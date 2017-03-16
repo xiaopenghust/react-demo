@@ -34,11 +34,17 @@ var config = {
                 loader:'html-loader'
             },
             {
-                test: /\.(gif|png|jpe?g|svg)$/i,
+                test: /\.(gif|png|jpe?g)$/i,
                 loaders:[
-                    'file-loader?name=assets/[name]-[hash:5].[ext]'
+                    'file-loader?name=assets/images/[name]-[hash:5].[ext]'
                 ]
-
+            },
+            {
+                test: /\.(eot|woff|woff2|svg|ttf)([\?]?.*)$/,
+                loader: "file-loader",
+                query:{
+                    name:"asserts/fonts/[name].[ext]"
+                }
             }
         ]
     },
