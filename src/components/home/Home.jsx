@@ -1,5 +1,6 @@
 import React from 'react';
 import homeCss from './home.scss';
+import update from 'react-addons-update';
 
 class Home extends React.Component{
     constructor(props) {
@@ -17,9 +18,15 @@ class Home extends React.Component{
     }
 
     onSexChange(e){
-        this.state.user.sex = e.currentTarget.value;
-        this.setState({user:this.state.user});
+        console.log(e.target)
+        var newState = update(this.state,{user:{sex:{$set:e.target.value}}});
+        this.setState(newState);
         console.log(this.state.user);
+    }
+
+    onHandleChange(e){
+        var newState = update(this.state,{user:{sex:{$set:e.target.value}}});
+        this.setState(newState);
     }
 
     render() {
@@ -36,7 +43,8 @@ class Home extends React.Component{
                           <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                               <div className="input-group panel">
                                   <span className="input-group-addon" id="basic-addon1">姓名：</span>
-                                  <input type="text" className="form-control" placeholder={'请输入学生姓名'+this.props.name} aria-describedby="basic-addon1" value={this.state.user.name} defaultValue={this.state.user.name}/>
+                                  <input type="text" className="form-control" placeholder={'请输入学生姓名'+this.props.name} aria-describedby="basic-addon1"
+                                         value={this.state.user.name} onChange={this.onHandleChange} name="name"/>
                               </div>
                               <div className="input-group panel">
                                   <span className="input-group-addon" id="basic-addon1">年龄：</span>
