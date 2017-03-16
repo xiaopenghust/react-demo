@@ -3,7 +3,7 @@ var htmlWebpackPlugin = require('html-webpack-plugin');
 var path = require('path');
 
 var BUILD_DIR = path.resolve(__dirname, 'dist');
-var APP_DIR = path.resolve(__dirname, 'src/client/app');
+var APP_DIR = path.resolve(__dirname, 'src/components');
 
 var config = {
     entry: APP_DIR + '/index.jsx',
@@ -20,9 +20,33 @@ var config = {
                 query: {
                     presets: ["es2015", "react"]
                 }
+            },
+            {
+                test: /\.css$/,
+                loader:'style-loader!css-loader?importLoaders=1!postcss-loader'
+            },
+            {
+                test:/\.scss$/,
+                loader:'style-loader!css-loader?importLoaders=1!postcss-loader!sass-loader'
+            },
+            {
+                test: /\.html/,
+                loader:'html-loader'
+            },
+            {
+                test: /\.(gif|png|jpe?g|svg)$/i,
+                loaders:[
+                    'file-loader?name=assets/[name]-[hash:5].[ext]'
+                ]
+
             }
         ]
     },
+    postcss:[
+        require('autoprefixer')({
+            broswers:['last 5 versions']
+        })
+    ],
     plugins: [
         new htmlWebpackPlugin({
             filename: 'index.html',
