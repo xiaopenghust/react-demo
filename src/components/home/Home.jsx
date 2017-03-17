@@ -1,35 +1,93 @@
 import React from 'react';
 import homeCss from './home.scss';
+import InputComponent from '../commons/InputComponent.jsx';
+import RadioComponent from '../commons/RadioComponent.jsx';
 import update from 'react-addons-update';
 
 class Home extends React.Component{
     constructor(props) {
         super(props);
         this.state ={
-            user:{
                 name:'sharp',
                 age:15,
                 sex:1,
                 birthday:'1987-08-05',
                 cardNo:'420822198705084554'
-            }
         };
-        this.onSexChange = this.onSexChange.bind(this);
+        this.onSubimt = this.onSubimt.bind(this);
+        this.onChangeAttr = this.onChangeAttr.bind(this);
     }
 
-    onSexChange(e){
-        console.log(e.target)
-        var newState = update(this.state,{user:{sex:{$set:e.target.value}}});
-        this.setState(newState);
-        console.log(this.state.user);
+    onSubimt(){
+        console.log(this.state);
     }
 
-    onHandleChange(e){
-        var newState = update(this.state,{user:{sex:{$set:e.target.value}}});
-        this.setState(newState);
+    onChangeAttr(event,attrName){
+        Reflect.set(this.state,attrName,event.target.value);
+        this.setState(this.state);
+    }
+
+    getFormInputs(){
+        let _self = this;
+        return [
+            {
+                label:'姓名',
+                valueType:'text',
+                placeholder:'请输入姓名',
+                type:'input',
+                onChange:(event)=>{
+                    return this.onChangeAttr(event, "name");
+                }
+            },
+            {
+                label:'年龄',
+                valueType:'number',
+                placeholder:'请输入年龄',
+                type:'input',
+                onChange:(event)=>{
+                    return this.onChangeAttr(event, "age");
+                }
+            },
+            {
+                label:'性别',
+                type:'radio',
+                radios:[
+                    {
+                        text:'男',
+                        value:1
+                    },
+                    {
+                        text:'女',
+                        value:2
+                    }
+                ],
+                onChange:(event)=>{
+                    return this.onChangeAttr(event, "sex");
+                }
+            },
+            {
+                label:'生日',
+                valueType:'date',
+                placeholder:'请输入生日',
+                type:'input',
+                onChange:(event)=>{
+                    return this.onChangeAttr(event, "date");
+                }
+            },
+            {
+                label:'身份证号',
+                valueType:'text',
+                placeholder:'请输入身份证号',
+                type:'input',
+                onChange:(event)=>{
+                    return this.onChangeAttr(event, "cardNo");
+                }
+            },
+        ]
     }
 
     render() {
+        let inputs = this.getFormInputs();
         return (
           <div class={homeCss.home}>
               <div className="page-header text-center">
@@ -41,45 +99,21 @@ class Home extends React.Component{
                   <div className="panel-body">
                       <div className="row">
                           <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                              <div className="input-group panel">
-                                  <span className="input-group-addon" id="basic-addon1">姓名：</span>
-                                  <input type="text" className="form-control" placeholder={'请输入学生姓名'+this.props.name} aria-describedby="basic-addon1"
-                                         value={this.state.user.name} onChange={this.onHandleChange} name="name"/>
-                              </div>
-                              <div className="input-group panel">
-                                  <span className="input-group-addon" id="basic-addon1">年龄：</span>
-                                  <input type="number" className="form-control" placeholder="请输入学生年龄" aria-describedby="basic-addon1" value={this.state.user.age} />
-                              </div>
-                              <div className="input-group panel">
-                                  <span className="input-group-addon" id="basic-addon1">性别：</span>
-                                  <div>
-                                      <label className="demo--label">
-                                          <input className="demo--radio" type="radio" name="sex" checked={this.state.user.sex == "1"} value="1" onChange={this.onSexChange} />
-                                              <span className="demo--radioInput"></span>男
-                                      </label>
-                                      <label className="demo--label">
-                                          <input className="demo--radio" type="radio" name="sex" checked={this.state.user.sex == "2"} value="2" onChange={this.onSexChange}/>
-                                              <span className="demo--radioInput"></span>女
-                                      </label>
-                                  </div>
-                              </div>
-                              <div className="input-group panel">
-                                  <span className="input-group-addon" id="basic-addon1">生日：</span>
-                                  <input type="date" className="form-control" placeholder="请输入学生生日" aria-describedby="basic-addon1" value={this.state.user.birthday}  />
-                              </div>
-                              <div className="input-group panel">
-                                  <span className="input-group-addon" id="basic-addon1">身份证号：</span>
-                                  <input type="number" className="form-control" placeholder="请输入学生身份证号" aria-describedby="basic-addon1" value={this.state.user.cardNo} />
-                              </div>
-                              <div className="input-group panel">
-                                  <span className="input-group-addon" id="basic-addon1">年龄：</span>
-                                  <input type="number" className="form-control" placeholder="请输入学生年龄" aria-describedby="basic-addon1"/>
-                              </div>
-                              <div className="input-group panel">
-                                  <span className="input-group-addon" id="basic-addon1">年龄：</span>
-                                  <input type="number" className="form-control" placeholder="请输入学生年龄" aria-describedby="basic-addon1"/>
-                              </div>
+                              {
+                                  inputs.map((input)=>{
+                                      switch(input.type){
+                                          case "input":
+                                              return <InputComponent key={input.label} obj={input}/>;
+                                          case "radio":
+                                              return <RadioComponent key={input.label} obj={input}/>;
+                                      }
+                                      return <InputComponent key={input.label} obj={input}/>;
+                                  })
+                              }
                           </div>
+                      </div>
+                      <div style={{textAlign:'center'}}>
+                            <input type="button" className="btn btn-default" onClick={this.onSubimt} value="提交"/>
                       </div>
                   </div>
                   </form>
