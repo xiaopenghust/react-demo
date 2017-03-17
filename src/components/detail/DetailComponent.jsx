@@ -2,7 +2,7 @@ import React from 'react';
 import {render} from 'react-dom';
 import {  browserHistory } from 'react-router';
 import css from './detail.scss';
-
+import axios from 'axios';
 
 class DetailComponent extends React.Component {
     constructor(props) {
@@ -19,6 +19,12 @@ class DetailComponent extends React.Component {
     }
 
     componentDidMount(){
+        axios.get("data/user.json").then((data)=>{
+            if(data.status === 200){
+                console.log(data.data);
+                this.setState(data.data);
+            }
+        });
         console.log('componentDidMount');
     }
 
