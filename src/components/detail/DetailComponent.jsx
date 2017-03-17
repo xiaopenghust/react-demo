@@ -21,7 +21,6 @@ class DetailComponent extends React.Component {
     componentDidMount(){
         axios.get("data/user.json").then((data)=>{
             if(data.status === 200){
-                console.log(data.data);
                 this.setState(data.data);
             }
         });
