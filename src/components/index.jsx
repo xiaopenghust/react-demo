@@ -9,7 +9,6 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        <p> Hello React!</p>
           <Home name="sharp"/>
         <AwesomeComponent />
       </div>

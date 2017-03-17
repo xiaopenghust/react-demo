@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import homeCss from './home.scss';
 import InputComponent from '../commons/InputComponent.jsx';
 import RadioComponent from '../commons/RadioComponent.jsx';
@@ -8,11 +9,13 @@ class Home extends React.Component{
     constructor(props) {
         super(props);
         this.state ={
-                name:'sharp',
-                age:15,
-                sex:1,
-                birthday:'1987-08-05',
-                cardNo:'420822198705084554'
+                user:{
+                    name:'sharp',
+                    age:15,
+                    sex:1,
+                    birthday:'1987-08-05',
+                    cardNo:'420822198705084554'
+                }
         };
         this.onSubimt = this.onSubimt.bind(this);
         this.onChangeAttr = this.onChangeAttr.bind(this);
@@ -23,7 +26,7 @@ class Home extends React.Component{
     }
 
     onChangeAttr(event,attrName){
-        Reflect.set(this.state,attrName,event.target.value);
+        Reflect.set(this.state.user,attrName,event.target.value);
         this.setState(this.state);
     }
 
@@ -89,7 +92,7 @@ class Home extends React.Component{
     render() {
         let inputs = this.getFormInputs();
         return (
-          <div class={homeCss.home}>
+          <div className="home">
               <div className="page-header text-center">
                   <h4><font color="white">深圳百合教育机构</font> <small><font color="#ccc">报名申请</font></small></h4>
               </div>
@@ -113,7 +116,7 @@ class Home extends React.Component{
                           </div>
                       </div>
                       <div style={{textAlign:'center'}}>
-                            <input type="button" className="btn btn-default" onClick={this.onSubimt} value="提交"/>
+                            <input type="button" className="submit-button" onClick={this.onSubimt} value="提      交"/>
                       </div>
                   </div>
                   </form>
