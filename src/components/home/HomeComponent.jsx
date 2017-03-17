@@ -4,6 +4,7 @@ import homeCss from './home.scss';
 import InputComponent from '../commons/InputComponent.jsx';
 import RadioComponent from '../commons/RadioComponent.jsx';
 import update from 'react-addons-update';
+import { Router, Route, Link, IndexRoute, Redirect, IndexRedirect, hashHistory, browserHistory } from 'react-router';
 
 class Home extends React.Component{
     constructor(props) {
@@ -22,7 +23,13 @@ class Home extends React.Component{
     }
 
     onSubimt(){
+        console.log(_);
         console.log(this.state);
+        browserHistory.push({
+            pathname:'/detail',
+            search: '?name=sharp',
+            state: { user: this.state.user }
+        });
     }
 
     onChangeAttr(event,attrName){
@@ -66,7 +73,8 @@ class Home extends React.Component{
                 ],
                 onChange:(event)=>{
                     return this.onChangeAttr(event, "sex");
-                }
+                },
+                defaultValue:1
             },
             {
                 label:'生日',

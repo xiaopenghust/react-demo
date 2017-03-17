@@ -5,7 +5,14 @@ class InputComponent extends React.Component{
     constructor(props) {
         super(props);
         this.state = this.props.obj;
-        this.state.onChange = this.state.onChange.bind(this.props.obj);
+        this.state.value = this.state.defaultValue;
+        this.onChange = this.onChange.bind(this);
+    }
+
+    onChange(event){
+        this.state.value = parseInt(event.target.value);
+        this.setState(this.state);
+        this.state.onChange(event);
     }
 
     render() {
@@ -16,7 +23,7 @@ class InputComponent extends React.Component{
                     {
                         this.state.radios.map((radio)=>{
                             return <label className="demo--label">
-                                <input className="demo--radio" type="radio" name="sex"  value={radio.value} onChange={this.state.onChange}/>
+                                <input className="demo--radio" type="radio" name="sex"  value={radio.value} onChange={this.onChange} checked={this.state.value === radio.value}/>
                                 <span className="demo--radioInput"></span>{radio.text}
                             </label>
                         })
