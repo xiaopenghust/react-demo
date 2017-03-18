@@ -9,6 +9,7 @@ import { Router, Route, Link, IndexRoute, Redirect, IndexRedirect, hashHistory, 
 class Home extends React.Component{
     constructor(props) {
         super(props);
+
         this.state ={
                 user:{
                     name:'sharp',
