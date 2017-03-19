@@ -106,7 +106,6 @@ class Home extends React.Component{
                   <h4><font color="white">深圳百合教育机构</font> <small><font color="#ccc">报名申请</font></small></h4>
               </div>
               <div className="panel panel-default">
-                  <form >
                   <div className="panel-heading">基本信息</div>
                   <div className="panel-body">
                       <div className="row">
@@ -128,7 +127,6 @@ class Home extends React.Component{
                             <input type="button" className="submit-button" onClick={this.onSubimt} value="提      交"/>
                       </div>
                   </div>
-                  </form>
               </div>
           </div>
         );
