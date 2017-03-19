@@ -8,7 +8,7 @@ import NoMatch from './NoMatch.jsx';
 import commons from './main.css';
 import {Provider} from 'react-redux';
 import {createStore, combineReducers} from 'redux';
-import configureStore from './store/store.js';
+import store from './store/store.js';
 
 class App extends React.Component {
     constructor(props){
@@ -27,8 +27,6 @@ class App extends React.Component {
         );
     }
 }
-
-const store = configureStore();
 
 render((
     <Provider store={store}>

@@ -10,10 +10,6 @@ class DetailComponent extends React.Component {
         this.state = props.location.state.user;
     }
 
-    getInitialState(){
-        console.log('getInitialState');
-    }
-
     componentWillMount(){
         console.log('componentWillMount');
     }

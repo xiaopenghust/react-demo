@@ -4,7 +4,6 @@
 
 let likesCount1 = 1;
 const cntReducer1 = (state, action)=>{
-    console.log('action---->',action);
     switch(action.type){
         case 'TO_COUNT1':
             return likesCount1++;

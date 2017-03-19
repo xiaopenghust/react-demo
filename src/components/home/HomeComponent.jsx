@@ -26,7 +26,7 @@ class Home extends React.Component{
     onSubimt(){
         console.log(_);
         console.log(this.state);
-        browserHistory.push({
+        hashHistory.push({
             pathname:'/detail',
             search: '?name=sharp',
             state: { user: this.state.user }

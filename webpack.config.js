@@ -55,7 +55,20 @@ var config = {
             broswers:['last 5 versions']
         })
     ],
+    devtool:'eval-source-map',
+    devServer:{
+        historyApiFallback:true,
+        hot:true,
+        inline:true,
+        proxy:{
+            '/api/*':{
+                target:'http://localhost:8081',
+                secure:false
+            }
+        }
+    },
     plugins: [
+        new webpack.optimize.UglifyJsPlugin({minimize: true}),
         new htmlWebpackPlugin({
             filename: 'index.html',
             template: 'index.html',
