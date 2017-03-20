@@ -1,7 +1,7 @@
 import React from 'react';
 import {render} from 'react-dom';
 import {  browserHistory } from 'react-router';
-import css from './detail.scss';
+import './detail.scss';
 import axios from 'axios';
 
 class DetailComponent extends React.Component {

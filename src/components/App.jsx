@@ -4,6 +4,7 @@ import { Router, Route, Link, IndexRoute, Redirect, IndexRedirect, hashHistory, 
 import AwesomeComponent from './AwesomeComponent.jsx';
 import HomeComponent from './home/HomeComponent.jsx';
 import DetailComponent from './detail/DetailComponent.jsx';
+import PicWallComponents from './picWall/PicWallComponents.jsx';
 import NoMatch from './NoMatch.jsx';
 import commons from './main.css';
 import {Provider} from 'react-redux';
@@ -20,6 +21,7 @@ class App extends React.Component {
             <div>
                 <footer>
                     <Link to="/home">外卖</Link>
+                    <Link to="/photos">照片墙</Link>
                     <Link to={{pathname:'click',query:{ qhfrom : "home"}, hash:'#user',}}>我的</Link>
                 </footer>
                 {this.props.children}
@@ -36,6 +38,7 @@ render((
                 <Route path="home" component={HomeComponent} />
                 <Route path="detail" component={DetailComponent}/>
                 <Route path="click" component={AwesomeComponent}/>
+                <Route path="photos" component={PicWallComponents}/>
                 <Route path="*" component={NoMatch}/>
             </Route>
         </Router>

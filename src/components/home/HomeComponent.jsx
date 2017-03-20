@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import homeCss from './home.scss';
+import './home.scss';
 import InputComponent from '../commons/InputComponent.jsx';
 import RadioComponent from '../commons/RadioComponent.jsx';
 import update from 'react-addons-update';
