@@ -18,9 +18,11 @@ class PicComponent extends React.Component{
 
     render(){
         return (
-            <div className={"pic " + this.state.rotate}  style={this.state.style}>
-                <img src={this.props.obj.url}/>
-                <p>{this.props.obj.text}</p>
+            <div className="picContainer">
+                <div className={"pic " + this.state.rotate}  style={this.state.style}>
+                    <img src={this.props.obj.url}/>
+                    <p>{this.props.obj.text}</p>
+                </div>
             </div>
         )
     }

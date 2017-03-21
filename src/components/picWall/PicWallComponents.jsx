@@ -30,7 +30,7 @@ class PicWallComponents extends React.Component{
     render(){
 
         return(
-                <div className="picContainer">
+                <div className="picWallContainer">
                     {
                             this.state.imgs.map(function(img){
                                 img.left = CommonUtils.getRandom(0,200);

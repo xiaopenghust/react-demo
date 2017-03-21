@@ -1,8 +1,9 @@
-.picContainer{
+
+.picWallContainer{
     width:350px;
-    min-height: 100%;
+    min-height: 95%;
     padding-bottom: 40px;
-    overflow: scroll;
+    overflow: hidden;
     background-color: #1e9f76;
     position: absolute;
     top:10px;
