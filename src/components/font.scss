@@ -1,30 +1,3 @@
-@media (min-device-width: 320px) and (max-device-width: 374px) and (max-aspect-ratio: 9/10) {
-    html, body {
-        font-size: 10px;
-        background-color: #1e9f76;
-    }
-}
-
-@media (min-device-width: 375px) and (max-device-width: 413px) and (max-aspect-ratio: 9/10) {
-    html, body {
-        font-size: 12px;
-        background-color: #1e9f76;
-    }
-}
-
-@media (min-device-width: 414px) and (max-device-width: 500px) and (max-aspect-ratio: 9/10) {
-    html, body {
-        font-size: 13.25px;
-        background-color: #1e9f76;
-    }
-}
-
-@media (min-device-width: 500px) and (max-aspect-ratio: 9/10) {
-    html, body {
-        font-size: 14px;
-        background-color: #1e9f76;
-    }
-}
 
 @font-face {
     font-family: 'baihe';
@@ -35,21 +8,6 @@
     url('../assets/baihe-fonts/fonts/baihe.svg?i7zobg#baihe') format('svg');
     font-weight: normal;
     font-style: normal;
-}
-
-i {
-    /* use !important to prevent issues with browser extensions that change fonts */
-    font-family: 'baihe' !important;
-    speak: none;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-
-    /* Better Font Rendering =========== */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
 .baihe-icon-list-off:before {
@@ -2056,42 +2014,3 @@ i {
 .baihe-icon-IcoMoon:before {
     content: "\eaea";
 }
-
-.demo--label{
-    margin:5px 20px 0 50px;
-    line-height: 100%;
-    display:inline-block
-}
-.demo--radio{
-    display:none
-}
-.demo--radioInput{
-    background-color:#fff;
-    border:1px solid rgba(0,0,0,0.15);
-    border-radius:100%;
-    display:inline-block;
-    height:18px;
-    margin-right:10px;
-    margin-top:-1px;
-    vertical-align:middle;
-    width:18px;
-    line-height:1
-}
-.demo--radio:checked + .demo--radioInput:after{
-    background-color:#57ad68;
-    border-color: #57ad68;
-    border-radius:100%;
-    content:"";
-    display:inline-block;
-    height:12px;
-    margin:2px;
-    width:12px
-}
-.demo--checkbox.demo--radioInput,.demo--radio:checked + .demo--checkbox.demo--radioInput:after{
-    border-radius:0
-}
-
-.opacity_0{
-    opacity : 0;
-}
-

@@ -24,6 +24,7 @@
     "autoprefixer": "^6.7.7",
     "axios": "^0.15.3",
     "css-loader": "^0.27.3",
+    "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.10.1",
     "history": "^4.6.1",
     "html-loader": "^0.4.5",
@@ -39,6 +40,7 @@
     "redux-thunk": "^2.2.0",
     "remove": "^0.1.5",
     "sass-loader": "^6.0.3",
+    "scss-loader": "0.0.1",
     "style-loader": "^0.14.1",
     "webpack-dev-server": "^1.16.3"
   }

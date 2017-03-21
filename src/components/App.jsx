@@ -6,7 +6,7 @@ import HomeComponent from './home/HomeComponent.jsx';
 import DetailComponent from './detail/DetailComponent.jsx';
 import PicWallComponents from './picWall/PicWallComponents.jsx';
 import NoMatch from './NoMatch.jsx';
-import commons from './main.css';
+import './main.scss';
 import {Provider} from 'react-redux';
 import {createStore, combineReducers} from 'redux';
 import store from './store/store.js';
