@@ -1,12 +1,12 @@
-var webpack = require('webpack');
-var htmlWebpackPlugin = require('html-webpack-plugin');
-var path = require('path');
+const webpack = require('webpack');
+const htmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
-var BUILD_DIR = path.resolve(__dirname, 'dist');
-var APP_DIR = path.resolve(__dirname, 'src/components');
+const BUILD_DIR = path.resolve(__dirname, 'dist');
+const APP_DIR = path.resolve(__dirname, 'src/components');
 
 
-var config = {
+const config = {
     entry: APP_DIR + '/App.jsx',
     output: {
         path: BUILD_DIR,

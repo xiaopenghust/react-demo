@@ -20,7 +20,7 @@ class App extends React.Component {
         return (
             <div>
                 <footer>
-                    <Link to="/home">外卖</Link>
+                    <Link to="/home">报名</Link>
                     <Link to="/photos">照片墙</Link>
                     <Link to={{pathname:'click',query:{ qhfrom : "home"}, hash:'#user',}}>我的</Link>
                 </footer>

@@ -1,6 +1,8 @@
 .picContainer{
     width:350px;
-    height: 600px;
+    min-height: 100%;
+    padding-bottom: 40px;
+    overflow: scroll;
     background-color: #1e9f76;
     position: absolute;
     top:10px;
