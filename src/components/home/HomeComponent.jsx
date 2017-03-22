@@ -2,6 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import './home.scss';
 import InputComponent from '../commons/InputComponent.jsx';
+import SelectComponent from '../commons/SelectComponent.jsx';
 import RadioComponent from '../commons/RadioComponent.jsx';
 import update from 'react-addons-update';
 import { Router, Route, Link, IndexRoute, Redirect, IndexRedirect, hashHistory, browserHistory } from 'react-router';
@@ -95,6 +96,21 @@ class Home extends React.Component{
                     return this.onChangeAttr(event, "cardNo");
                 }
             },
+            {
+                label:'爱好',
+                placeholder:'请选择爱好',
+                type:'select',
+                onChange:(event)=>{
+                    return this.onChangeAttr(event, "lover");
+                },
+                defaultValue:3,
+                items:[
+                    {text:'足球',value:1},
+                    {text:'篮球',value:2},
+                    {text:'保龄球',value:3},
+                    {text:'高尔夫球',value:4}
+                ]
+            },
         ]
     }
 
@@ -117,6 +133,8 @@ class Home extends React.Component{
                                               return <InputComponent key={input.label} obj={input}/>;
                                           case "radio":
                                               return <RadioComponent key={input.label} obj={input}/>;
+                                          case "select":
+                                              return <SelectComponent key={input.label} obj={input}/>;
                                       }
                                       return <InputComponent key={input.label} obj={input}/>;
                                   })
