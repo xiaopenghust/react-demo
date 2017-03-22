@@ -1,8 +1,8 @@
 /**
  * Created by SHARP on 2017/3/18.
  */
-import cntReducer1 from '../reducer/CountReducer1.js';
-import cntReducer2 from '../reducer/CountReducer2.js';
+import cntReducer1 from './CountReducer1.js';
+import cntReducer2 from './CountReducer2.js';
 let likesCount = 1;
 let initState= {
     likesCount1:0,

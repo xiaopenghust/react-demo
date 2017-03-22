@@ -3,7 +3,7 @@
  */
 
 import { combineReducers } from 'redux'
-import cntReducer from '../reducer/CountReducer.js';
+import cntReducer from '../clickCount/CountReducer.js';
 
 
 

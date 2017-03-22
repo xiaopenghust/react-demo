@@ -1,3 +1,4 @@
+@import "../../variables";
 .picContainer{
     .pic{
         position: absolute;
@@ -24,7 +25,7 @@
             font-family: 微软雅黑, serif;
         }
     }
-    $box-shadow:2px 2px 5px #ccc;
+
     .pic:hover{
         -webkit-transform:rotate(0deg);
         transform:rotate(0deg);

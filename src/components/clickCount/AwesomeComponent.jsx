@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {getState} from 'redux';
-import store from './store/store.js';
+import store from '../store/store.js';
+import * as action from './constants';
 
 class AwesomeComponent extends React.Component {
 
@@ -23,15 +24,11 @@ class AwesomeComponent extends React.Component {
     }
 
     onLike1() {
-        this.props.dispatch({
-            type: 'TO_COUNT1'
-        });
+        this.props.dispatch(action.click1());
     }
 
     onLike2() {
-        this.props.dispatch({
-            type: 'TO_COUNT2'
-        });
+        this.props.dispatch(action.click2());
     }
 
     render() {

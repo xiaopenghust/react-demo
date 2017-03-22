@@ -1,7 +1,7 @@
 import React from 'react';
 import {render} from 'react-dom';
 import { Router, Route, Link, IndexRoute, Redirect, IndexRedirect, hashHistory, browserHistory } from 'react-router';
-import AwesomeComponent from './AwesomeComponent.jsx';
+import AwesomeComponent from './clickCount/AwesomeComponent.jsx';
 import HomeComponent from './home/HomeComponent.jsx';
 import DetailComponent from './detail/DetailComponent.jsx';
 import PicWallComponents from './picWall/PicWallComponents.jsx';
