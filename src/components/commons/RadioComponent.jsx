@@ -1,5 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
+import './radio.scss';
 
 class InputComponent extends React.Component{
     constructor(props) {
@@ -17,7 +18,7 @@ class InputComponent extends React.Component{
 
     render() {
         return (
-            <div className="input-group panel">
+            <div className="input-group panel radioContainer">
                 <span className="input-group-addon" id="basic-addon1">{this.state.label}：</span>
                 <div>
                     {

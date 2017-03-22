@@ -1,0 +1,51 @@
+.radioContainer{
+    i {
+        /* use !important to prevent issues with browser extensions that change fonts */
+        font-family: 'baihe' !important;
+        speak: none;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+
+        /* Better Font Rendering =========== */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .demo--label{
+        margin: 5px auto;
+        line-height: 100%;
+        width: 50%;
+        text-align: center;
+    }
+    .demo--radio{
+        display:none
+    }
+    .demo--radioInput{
+        background-color:#fff;
+        border:1px solid rgba(0,0,0,0.15);
+        border-radius:100%;
+        display:inline-block;
+        height:18px;
+        margin-right:10px;
+        margin-top:-1px;
+        vertical-align:middle;
+        width:18px;
+        line-height:1
+    }
+    .demo--radio:checked + .demo--radioInput:after{
+        background-color:#57ad68;
+        border-color: #57ad68;
+        border-radius:100%;
+        content:"";
+        display:inline-block;
+        height:12px;
+        margin:2px;
+        width:12px
+    }
+    .demo--checkbox.demo--radioInput,.demo--radio:checked + .demo--checkbox.demo--radioInput:after{
+        border-radius:0
+    }
+}
