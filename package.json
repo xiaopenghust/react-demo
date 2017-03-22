@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --progress --profile --colors --hot --inline",
+    "start": "webpack-dev-server --progress --profile --colors --hot --inline --port 3000 --host 0.0.0.0",
     "dev": "webpack -d --watch",
     "webpack": "webpack --config webpack.config.js --colors --display-reasons --display-error-details --hot --inline"
   },
