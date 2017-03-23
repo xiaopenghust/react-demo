@@ -8,7 +8,6 @@ import PicWallComponents from './picWall/PicWallComponents.jsx';
 import NoMatch from './NoMatch.jsx';
 import './main.scss';
 import {Provider} from 'react-redux';
-import {createStore, combineReducers} from 'redux';
 import store from './store/store.js';
 
 class App extends React.Component {

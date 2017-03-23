@@ -6,7 +6,6 @@ const BUILD_DIR = path.resolve(__dirname, 'dist');
 const APP_DIR = path.resolve(__dirname, 'src/components');
 const DATA_DIR = path.resolve(__dirname, 'data');
 
-
 const config = {
     entry: APP_DIR + '/App.jsx',
     output: {
@@ -53,11 +52,11 @@ const config = {
                 }
             },
             {
-                test: /\.(gif|png|jpg)$/,
+                test: /\.(gif|png|jpe?g)$/i,
                 include: DATA_DIR,
                 loader: "file-loader",
                 query:{
-                    name:"data/images/[name].[ext]"
+                    name:"data/images/[name]-[hash:5].[ext]"
                 }
             }
         ]
@@ -67,7 +66,6 @@ const config = {
             broswers:['last 5 versions']
         })
     ],
-    devtool:'eval-source-map',
     devServer:{
         historyApiFallback:true,
         hot:true,
@@ -80,6 +78,8 @@ const config = {
         }
     },
     plugins: [
+        new webpack.DefinePlugin({'process.env': {'NODE_ENV': JSON.stringify('production')}}),
+        new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.optimize.UglifyJsPlugin({minimize: true}),
         new htmlWebpackPlugin({
             filename: 'index.html',
@@ -89,5 +89,9 @@ const config = {
         })
     ]
 };
+console.log('process.env.NODE_ENV---->', process.env.NODE_ENV);
+if (process.env.NODE_ENV != 'production') {
+    config.devtool = 'eval-source-map'
+}
 
 module.exports = config;
