@@ -5,9 +5,11 @@ import InputComponent from '../commons/InputComponent.jsx';
 import SelectComponent from '../commons/SelectComponent.jsx';
 import RadioComponent from '../commons/RadioComponent.jsx';
 import {ButtonToolbar, Button} from 'react-bootstrap';
-import DateTimeField from 'react-bootstrap-datetimepicker';
+import DatePickerComponent from '../commons/DatePickerComponent.jsx';
 import update from 'react-addons-update';
 import { Router, Route, Link, IndexRoute, Redirect, IndexRedirect, hashHistory, browserHistory } from 'react-router';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap-theme.min.css';
 
 class Home extends React.Component{
     constructor(props) {
@@ -99,6 +101,14 @@ class Home extends React.Component{
                 }
             },
             {
+                label:'时间',
+                placeholder:'请输入时间',
+                type:'datePicker',
+                onChange:(event)=>{
+                    return this.onChangeAttr(event, "time");
+                }
+            },
+            {
                 label:'爱好种类',
                 placeholder:'请选择爱好种类',
                 type:'select',
@@ -171,18 +181,14 @@ class Home extends React.Component{
                                               return <RadioComponent key={input.label} obj={input}/>;
                                           case "select":
                                               return <SelectComponent key={input.label} obj={input} ref={input.ref}/>;
+                                          case "datePicker":
+                                              return <DatePickerComponent key={input.label} obj={input}/>;
                                       }
                                       return <InputComponent key={input.label} obj={input}/>;
                                   })
                               }
                           </div>
-                          <DateTimeField/>
                       </div>
-                      <ButtonToolbar>
-                          <Button bsStyle="primary" bsSize="large" active>Primary button</Button>
-                          <Button bsSize="large" active>Button</Button>
-                      </ButtonToolbar>
-
                       <div style={{textAlign:'center'}}>
                             <input type="button" className="submit-button" onClick={this.onSubimt} value="提      交"/>
                       </div>
