@@ -4,6 +4,8 @@ import './home.scss';
 import InputComponent from '../commons/InputComponent.jsx';
 import SelectComponent from '../commons/SelectComponent.jsx';
 import RadioComponent from '../commons/RadioComponent.jsx';
+import {ButtonToolbar, Button} from 'react-bootstrap';
+import DateTimeField from 'react-bootstrap-datetimepicker';
 import update from 'react-addons-update';
 import { Router, Route, Link, IndexRoute, Redirect, IndexRedirect, hashHistory, browserHistory } from 'react-router';
 
@@ -174,7 +176,13 @@ class Home extends React.Component{
                                   })
                               }
                           </div>
+                          <DateTimeField/>
                       </div>
+                      <ButtonToolbar>
+                          <Button bsStyle="primary" bsSize="large" active>Primary button</Button>
+                          <Button bsSize="large" active>Button</Button>
+                      </ButtonToolbar>
+
                       <div style={{textAlign:'center'}}>
                             <input type="button" className="submit-button" onClick={this.onSubimt} value="提      交"/>
                       </div>

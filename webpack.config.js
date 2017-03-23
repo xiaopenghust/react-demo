@@ -4,6 +4,7 @@ const path = require('path');
 
 const BUILD_DIR = path.resolve(__dirname, 'dist');
 const APP_DIR = path.resolve(__dirname, 'src/components');
+const DATA_DIR = path.resolve(__dirname, 'data');
 
 
 const config = {
@@ -37,16 +38,26 @@ const config = {
                 loader:'html-loader'
             },
             {
-                test: /\.(gif|png|jpe?g)$/i,
-                loaders:[
-                    'file-loader?name=assets/images/[name]-[hash:5].[ext]'
-                ]
+                test: /\.(json)([\?]?.*)$/,
+                include: DATA_DIR,
+                loader: "file-loader",
+                query:{
+                    name:"data/[name].[ext]"
+                }
             },
             {
                 test: /\.(eot|woff|woff2|svg|ttf)([\?]?.*)$/,
                 loader: "file-loader",
                 query:{
                     name:"asserts/fonts/[name].[ext]"
+                }
+            },
+            {
+                test: /\.(gif|png|jpg)$/,
+                include: DATA_DIR,
+                loader: "file-loader",
+                query:{
+                    name:"data/images/[name].[ext]"
                 }
             }
         ]
