@@ -90,7 +90,9 @@ const config = {
     ]
 };
 console.log('process.env.NODE_ENV---->', process.env.NODE_ENV);
-if (process.env.NODE_ENV != 'production') {
+if (process.env.NODE_ENV === 'production') {
+    config.devtool = 'cheap-source-map'
+}else{
     config.devtool = 'eval-source-map'
 }
 

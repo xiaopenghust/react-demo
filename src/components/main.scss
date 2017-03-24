@@ -58,7 +58,9 @@ footer a{
     border-right: 1px solid #f4f4f4;
 }
 
-$box-shadow:2px 2px 5px #ccc;
+.input-group .date{
+    width:100%;
+}
 
 @import "font.scss";
 
