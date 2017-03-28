@@ -9,7 +9,6 @@ import NoMatch from './NoMatch.jsx';
 import './main.scss';
 import {Provider} from 'react-redux';
 import store from './store/store.js';
-import DevTools from './store/DevTools.js';
 
 class App extends React.Component {
     constructor(props){
@@ -17,11 +16,11 @@ class App extends React.Component {
     }
 
     render () {
-        DevTools.instrument();
         return (
             <div>
                 <footer>
                     <Link to="/home">报名</Link>
+                    <Link to="/detail">列表</Link>
                     <Link to="/photos">照片墙</Link>
                     <Link to={{pathname:'click',query:{ qhfrom : "home"}, hash:'#user',}}>我的</Link>
                 </footer>

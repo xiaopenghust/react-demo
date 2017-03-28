@@ -2,12 +2,15 @@ import React from 'react';
 import {render} from 'react-dom';
 import {  browserHistory } from 'react-router';
 import './detail.scss';
-import axios from 'axios';
+import AjaxUtils from '../ajax/AjaxUtils.js';
 
 class DetailComponent extends React.Component {
     constructor(props) {
         super(props);
-        this.state = props.location.state.user;
+        // this.state = props.location.state.user;
+        this.state = {
+            users:[]
+        }
     }
 
     componentWillMount(){
@@ -15,9 +18,11 @@ class DetailComponent extends React.Component {
     }
 
     componentDidMount(){
-        axios.get("data/user.json").then((data)=>{
+        AjaxUtils.get("http://localhost:3000/users").then((data)=>{
+            console.log('detail request success',data);
             if(data.status === 200){
-                this.setState(data.data);
+                this.setState(Object.assign({},this.state, {users:data.data}));
+                console.log('this state--->',this.state);
             }
         });
         console.log('componentDidMount');
@@ -41,13 +46,18 @@ class DetailComponent extends React.Component {
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>{this.state.name}</td>
-                                <td>{this.state.age}</td>
-                                <td>{this.state.sex}</td>
-                                <td>{this.state.birthday}</td>
-                                <td>{this.state.cardNo}</td>
-                            </tr>
+                            {
+                                this.state.users.map((user)=>{
+                                    return (
+                                    <tr>
+                                        <td>{user.name}</td>
+                                        <td>{user.age}</td>
+                                        <td>{user.sex}</td>
+                                        <td>{user.birthday}</td>
+                                        <td>{user.cardNo}</td>
+                                    </tr>)
+                                })
+                            }
                             </tbody>
                         </table>
                     </div>

@@ -10,6 +10,7 @@ import update from 'react-addons-update';
 import { Router, Route, Link, IndexRoute, Redirect, IndexRedirect, hashHistory, browserHistory } from 'react-router';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap-theme.min.css';
+import AjaxUtils from '../ajax/AjaxUtils.js';
 
 class Home extends React.Component{
     constructor(props) {
@@ -31,11 +32,14 @@ class Home extends React.Component{
     onSubimt(){
         console.log(_);
         console.log(this.state);
-        hashHistory.push({
-            pathname:'/detail',
-            search: '?name=sharp',
-            state: { user: this.state.user }
-        });
+        AjaxUtils.post('http://localhost:3000/users/',this.state.user).then((data)=>{
+            console.log('请求成功',data);
+            hashHistory.push({
+                pathname:'/detail'
+                ,search: '?name=sharp'
+                //,state: { user: this.state.user }
+            });
+        })
     }
 
     onChangeAttr(event,attrName){
