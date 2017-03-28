@@ -3,6 +3,7 @@ import {render} from 'react-dom';
 import {  browserHistory } from 'react-router';
 import './detail.scss';
 import AjaxUtils from '../ajax/AjaxUtils.js';
+import GlobalApi from '../GlobalApi.js';
 
 class DetailComponent extends React.Component {
     constructor(props) {
@@ -18,7 +19,7 @@ class DetailComponent extends React.Component {
     }
 
     componentDidMount(){
-        AjaxUtils.get("http://localhost:3000/users").then((data)=>{
+        AjaxUtils.get(GlobalApi.REMOTE_URL + '/users').then((data)=>{
             console.log('detail request success',data);
             if(data.status === 200){
                 this.setState(Object.assign({},this.state, {users:data.data}));

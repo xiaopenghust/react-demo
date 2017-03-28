@@ -11,6 +11,8 @@ import { Router, Route, Link, IndexRoute, Redirect, IndexRedirect, hashHistory, 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap-theme.min.css';
 import AjaxUtils from '../ajax/AjaxUtils.js';
+import GlobalApi from '../GlobalApi.js';
+
 
 class Home extends React.Component{
     constructor(props) {
@@ -32,7 +34,7 @@ class Home extends React.Component{
     onSubimt(){
         console.log(_);
         console.log(this.state);
-        AjaxUtils.post('http://localhost:3000/users/',this.state.user).then((data)=>{
+        AjaxUtils.post(GlobalApi.REMOTE_URL + '/users/',this.state.user).then((data)=>{
             console.log('请求成功',data);
             hashHistory.push({
                 pathname:'/detail'
