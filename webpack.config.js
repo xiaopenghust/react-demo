@@ -78,8 +78,6 @@ const config = {
         }
     },
     plugins: [
-        new webpack.optimize.OccurenceOrderPlugin(),
-        new webpack.optimize.UglifyJsPlugin({minimize: true}),
         new htmlWebpackPlugin({
             filename: 'index.html',
             template: 'index.html',
@@ -90,9 +88,20 @@ const config = {
 };
 console.log('process.env.NODE_ENV---->', process.env.NODE_ENV);
 if (process.env.NODE_ENV === 'production') {
-    config.devtool = 'cheap-source-map'
+    config.devtool = 'cheap-source-map';
+        config.plugins.push(
+            new webpack.DefinePlugin({
+                "process.env": {
+                    NODE_ENV: JSON.stringify("production")
+                }
+            })
+        );
+        config.plugins.push(
+            new webpack.optimize.UglifyJsPlugin()
+        );
+
 }else{
-    config.devtool = 'eval-source-map'
+    config.devtool = 'eval-source-map';
 }
 
 module.exports = config;

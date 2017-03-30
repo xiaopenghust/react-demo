@@ -44,6 +44,9 @@ class DetailComponent extends React.Component {
                                 <th>性别</th>
                                 <th>生日</th>
                                 <th>身份证号</th>
+                                <th>时间</th>
+                                <th>爱好种类</th>
+                                <th>爱好</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -56,6 +59,9 @@ class DetailComponent extends React.Component {
                                         <td>{user.sex}</td>
                                         <td>{user.birthday}</td>
                                         <td>{user.cardNo}</td>
+                                        <td>{user.time}</td>
+                                        <td>{user.loverType}</td>
+                                        <td>{user.lovers}</td>
                                     </tr>)
                                 })
                             }

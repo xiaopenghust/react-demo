@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "jsonserver":"jsonserver --path db.json",
     "start": "webpack-dev-server --progress --profile --colors --hot --inline --port 4000 --host 0.0.0.0",
     "start-prod": "cross-env NODE_ENV=production webpack-dev-server --progress --profile --colors --hot --inline --port 4000 --host 0.0.0.0",
     "dev": "webpack -d --watch",

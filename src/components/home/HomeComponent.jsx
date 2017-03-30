@@ -20,28 +20,47 @@ class Home extends React.Component{
 
         this.state ={
                 user:{
-                    name:'sharp',
-                    age:15,
+                    name:'',
+                    age:0,
                     sex:1,
-                    birthday:'1987-08-05',
-                    cardNo:'420822198705084554'
-                }
+                    birthday:'',
+                    cardNo:'',
+                    time:'',
+                    loverType:'',
+                    lovers:''
+                },
+                canSubmit:'disabled'
         };
         this.onSubimt = this.onSubimt.bind(this);
         this.onChangeAttr = this.onChangeAttr.bind(this);
     }
 
     onSubimt(){
-        console.log(_);
-        console.log(this.state);
-        AjaxUtils.post(GlobalApi.REMOTE_URL + '/users/',this.state.user).then((data)=>{
-            console.log('请求成功',data);
-            hashHistory.push({
-                pathname:'/detail'
-                ,search: '?name=sharp'
-                //,state: { user: this.state.user }
-            });
-        })
+        if(checkForm){
+            AjaxUtils.post(GlobalApi.REMOTE_URL + '/users/',this.state.user).then((data)=>{
+                console.log('请求成功',data);
+                hashHistory.push({
+                    pathname:'/detail'
+                    ,search: '?name=sharp'
+                    //,state: { user: this.state.user }
+                });
+            })
+        }else{
+
+        }
+    }
+
+    checkForm(){
+        if(this.state.user){
+            for(name in this.state.user){
+                if(_.isEmpty(this.state.user[name]) && isNaN(this.state.user[name])){
+                    if(this.state.canSubmit){
+                        this.setState(Object.assign({},this.state,{canSubmit : 'disabled'}));
+                    }
+                }
+            }
+        }
+        this.setState(Object.assign({},this.state,{canSubmit : ''}));
     }
 
     onChangeAttr(event,attrName){
@@ -58,7 +77,8 @@ class Home extends React.Component{
                 placeholder:'请输入姓名',
                 type:'input',
                 onChange:(event)=>{
-                    return this.onChangeAttr(event, "name");
+                    this.onChangeAttr(event, "name");
+                    this.checkForm();
                 }
             },
             {
@@ -67,7 +87,8 @@ class Home extends React.Component{
                 placeholder:'请输入年龄',
                 type:'input',
                 onChange:(event)=>{
-                    return this.onChangeAttr(event, "age");
+                    this.onChangeAttr(event, "age");
+                    this.checkForm();
                 }
             },
             {
@@ -84,7 +105,8 @@ class Home extends React.Component{
                     }
                 ],
                 onChange:(event)=>{
-                    return this.onChangeAttr(event, "sex");
+                    this.onChangeAttr(event, "sex");
+                    this.checkForm();
                 },
                 defaultValue:1
             },
@@ -94,7 +116,8 @@ class Home extends React.Component{
                 placeholder:'请输入生日',
                 type:'input',
                 onChange:(event)=>{
-                    return this.onChangeAttr(event, "date");
+                    this.onChangeAttr(event, "date");
+                    this.checkForm();
                 }
             },
             {
@@ -103,7 +126,8 @@ class Home extends React.Component{
                 placeholder:'请输入身份证号',
                 type:'input',
                 onChange:(event)=>{
-                    return this.onChangeAttr(event, "cardNo");
+                    this.onChangeAttr(event, "cardNo");
+                    this.checkForm();
                 }
             },
             {
@@ -111,7 +135,8 @@ class Home extends React.Component{
                 placeholder:'请输入时间',
                 type:'datePicker',
                 onChange:(event)=>{
-                    return this.onChangeAttr(event, "time");
+                    this.onChangeAttr(event, "time");
+                    this.checkForm();
                 }
             },
             {
@@ -144,7 +169,8 @@ class Home extends React.Component{
                         default:
                             this.refs.loversSelect.setItems([]);
                     }
-                    return this.onChangeAttr(event, "loverType");
+                    this.onChangeAttr(event, "loverType");
+                    this.checkForm();
                 }
             },
             {
@@ -152,7 +178,8 @@ class Home extends React.Component{
                 placeholder:'请选择爱好',
                 type:'select',
                 onChange:(event)=>{
-                    return this.onChangeAttr(event, "lovers");
+                    this.onChangeAttr(event, "lovers");
+                    this.checkForm();
                 },
                 defaultValue:3,
                 items:[
@@ -196,7 +223,7 @@ class Home extends React.Component{
                           </div>
                       </div>
                       <div style={{textAlign:'center'}}>
-                            <input type="button" className="submit-button" onClick={this.onSubimt} value="提      交"/>
+                            <input type="button" className="submit-button" onClick={this.onSubimt} value="提      交" disabled={this.state.canSubmit}/>
                       </div>
                   </div>
               </div>
