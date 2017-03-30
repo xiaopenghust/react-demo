@@ -67,7 +67,7 @@ class DetailComponent extends React.Component {
                                         <td>{user.time}</td>
                                         <td>{user.loverType}</td>
                                         <td>{user.lovers}</td>
-                                        <td><a href="#" onClick={()=>{this.deleteUser(user.id)}}>删除</a></td>
+                                        <td><a href="javascript:void(0)" onClick={()=>{this.deleteUser(user.id)}}>删除</a></td>
                                     </tr>)
                                 })
                             }
