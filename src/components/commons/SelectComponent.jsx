@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 
 class SelectComponent extends React.Component{
     constructor(props) {

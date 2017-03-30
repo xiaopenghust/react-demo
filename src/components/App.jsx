@@ -9,6 +9,7 @@ import NoMatch from './NoMatch.jsx';
 import './main.scss';
 import {Provider} from 'react-redux';
 import store from './store/store.js';
+import './main.scss';
 
 class App extends React.Component {
     constructor(props){

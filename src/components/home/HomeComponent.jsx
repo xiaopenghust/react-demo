@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 import './home.scss';
 import InputComponent from '../commons/InputComponent.jsx';
 import SelectComponent from '../commons/SelectComponent.jsx';
@@ -20,32 +19,58 @@ class Home extends React.Component{
 
         this.state ={
                 user:{
-                    name:'sharp',
-                    age:15,
+                    name:'',
+                    age:0,
                     sex:1,
-                    birthday:'1987-08-05',
-                    cardNo:'420822198705084554'
-                }
+                    birthday:'',
+                    cardNo:'',
+                    time:'',
+                    loverType:'1',
+                    lovers:'3'
+                },
+                canSubmit:'disabled'
         };
         this.onSubimt = this.onSubimt.bind(this);
         this.onChangeAttr = this.onChangeAttr.bind(this);
+        this.onChangeValue = this.onChangeValue.bind(this);
     }
 
     onSubimt(){
-        console.log(_);
-        console.log(this.state);
-        AjaxUtils.post(GlobalApi.REMOTE_URL + '/users/',this.state.user).then((data)=>{
-            console.log('请求成功',data);
-            hashHistory.push({
-                pathname:'/detail'
-                ,search: '?name=sharp'
-                //,state: { user: this.state.user }
-            });
-        })
+        if(this.checkForm()){
+            AjaxUtils.post(GlobalApi.REMOTE_URL + '/users/',this.state.user).then((data)=>{
+                console.log('请求成功',data);
+                hashHistory.push({
+                    pathname:'/detail'
+                    ,search: '?name=sharp'
+                    //,state: { user: this.state.user }
+                });
+            })
+        }else{
+
+        }
+    }
+
+    checkForm(value){
+        if(this.state.user){
+            for(name in this.state.user){
+                if(!this.state.user[name] || this.state.user[name] === '' ){
+                    if(this.state.canSubmit === ''){
+                        this.setState(Object.assign({},this.state,{canSubmit : 'disabled'}));
+                    }
+                    return false;
+                }
+            }
+        }
+        this.setState(Object.assign({},this.state,{canSubmit : ''}));
+        return true;
     }
 
     onChangeAttr(event,attrName){
-        Reflect.set(this.state.user,attrName,event.target.value);
+        this.onChangeValue(event.target.value, attrName);
+    }
+
+    onChangeValue(value,attrName){
+        Reflect.set(this.state.user,attrName,value);
         this.setState(this.state);
     }
 
@@ -58,7 +83,8 @@ class Home extends React.Component{
                 placeholder:'请输入姓名',
                 type:'input',
                 onChange:(event)=>{
-                    return this.onChangeAttr(event, "name");
+                    this.onChangeAttr(event, "name");
+                    this.checkForm();
                 }
             },
             {
@@ -67,7 +93,8 @@ class Home extends React.Component{
                 placeholder:'请输入年龄',
                 type:'input',
                 onChange:(event)=>{
-                    return this.onChangeAttr(event, "age");
+                    this.onChangeAttr(event, "age");
+                    this.checkForm(event);
                 }
             },
             {
@@ -84,7 +111,8 @@ class Home extends React.Component{
                     }
                 ],
                 onChange:(event)=>{
-                    return this.onChangeAttr(event, "sex");
+                    this.onChangeAttr(event, "sex");
+                    this.checkForm(event);
                 },
                 defaultValue:1
             },
@@ -94,7 +122,8 @@ class Home extends React.Component{
                 placeholder:'请输入生日',
                 type:'input',
                 onChange:(event)=>{
-                    return this.onChangeAttr(event, "date");
+                    this.onChangeAttr(event, "birthday");
+                    this.checkForm(event);
                 }
             },
             {
@@ -103,15 +132,17 @@ class Home extends React.Component{
                 placeholder:'请输入身份证号',
                 type:'input',
                 onChange:(event)=>{
-                    return this.onChangeAttr(event, "cardNo");
+                    this.onChangeAttr(event, "cardNo");
+                    this.checkForm(event);
                 }
             },
             {
                 label:'时间',
                 placeholder:'请输入时间',
                 type:'datePicker',
-                onChange:(event)=>{
-                    return this.onChangeAttr(event, "time");
+                onChange:(value)=>{
+                    this.onChangeValue(value,'time');
+                    this.checkForm(event);
                 }
             },
             {
@@ -124,7 +155,6 @@ class Home extends React.Component{
                     {text:'文学类',value:2}
                 ],
                 onChange:(event)=>{
-                    console.log('~~~~~~~onChange~~~~~~~~~~~~~~~~~',event.target.value);
                     switch(event.target.value){
                         case "1":
                             this.refs.loversSelect.setItems([
@@ -144,7 +174,8 @@ class Home extends React.Component{
                         default:
                             this.refs.loversSelect.setItems([]);
                     }
-                    return this.onChangeAttr(event, "loverType");
+                    this.onChangeAttr(event, "loverType");
+                    this.checkForm(event);
                 }
             },
             {
@@ -152,7 +183,8 @@ class Home extends React.Component{
                 placeholder:'请选择爱好',
                 type:'select',
                 onChange:(event)=>{
-                    return this.onChangeAttr(event, "lovers");
+                    this.onChangeAttr(event, "lovers");
+                    this.checkForm(event);
                 },
                 defaultValue:3,
                 items:[
@@ -196,7 +228,7 @@ class Home extends React.Component{
                           </div>
                       </div>
                       <div style={{textAlign:'center'}}>
-                            <input type="button" className="submit-button" onClick={this.onSubimt} value="提      交"/>
+                            <input type="button" className="submit-button" onClick={this.onSubimt} value='提    交' disabled={this.state.canSubmit} style={this.state.canSubmit === 'disabled' ? {background:'#eee'} : {}}/>
                       </div>
                   </div>
               </div>
