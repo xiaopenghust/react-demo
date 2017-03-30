@@ -15,6 +15,7 @@ class InputComponent extends React.Component{
                    placeholder={this.state.placeholder}
                    aria-describedby="basic-addon1"
                    onChange={this.state.onChange}
+                   defaultValue={this.state.defaultValue}
                    />
         </div>)
     }

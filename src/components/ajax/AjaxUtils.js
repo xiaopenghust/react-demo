@@ -19,7 +19,7 @@ class AjaxUtils {
 
 
     static put(url, data){
-        axios.put(url, data);
+        return axios.put(url, data);
     }
 
 
@@ -28,7 +28,7 @@ class AjaxUtils {
             let args = encodeURIComponent(JSON.stringify(data));
             url += (url.indexOf('?') !== -1 ? '&' : '?' ) + args;
         }
-        axios.delete(url)
+        return axios.delete(url)
     }
 }
 

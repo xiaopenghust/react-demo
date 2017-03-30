@@ -1,9 +1,11 @@
 import React from 'react';
 import {render} from 'react-dom';
+import {remove} from 'lodash';
 import {  browserHistory } from 'react-router';
 import './detail.scss';
 import AjaxUtils from '../ajax/AjaxUtils.js';
 import GlobalApi from '../GlobalApi.js';
+import {hashHistory } from 'react-router';
 
 class DetailComponent extends React.Component {
     constructor(props) {
@@ -30,7 +32,19 @@ class DetailComponent extends React.Component {
     }
 
     deleteUser(id){
-        AjaxUtils.delete(GlobalApi.REMOTE_URL + '/users/'+id);
+        AjaxUtils.delete(GlobalApi.REMOTE_URL + '/users/'+id).then(() => {
+            this.setState({user:remove(this.state.users,function(user){
+                return user.id === id;
+            })});
+        });
+
+    }
+
+    updaterUser(user){
+        hashHistory.push({
+            pathname:'/home'
+            ,state: { user: user }
+        });
     }
 
 
@@ -67,7 +81,10 @@ class DetailComponent extends React.Component {
                                         <td>{user.time}</td>
                                         <td>{user.loverType}</td>
                                         <td>{user.lovers}</td>
-                                        <td><a href="javascript:void(0)" onClick={()=>{this.deleteUser(user.id)}}>删除</a></td>
+                                        <td>
+                                            <a href="javascript:void(0)" onClick={()=>{this.deleteUser(user.id)}}>删除</a>
+                                            <a href="javascript:void(0)" onClick={()=>{this.updaterUser(user)}}>编辑</a>
+                                        </td>
                                     </tr>)
                                 })
                             }
