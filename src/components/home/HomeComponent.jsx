@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 import './home.scss';
 import InputComponent from '../commons/InputComponent.jsx';
 import SelectComponent from '../commons/SelectComponent.jsx';
@@ -26,17 +25,18 @@ class Home extends React.Component{
                     birthday:'',
                     cardNo:'',
                     time:'',
-                    loverType:'',
-                    lovers:''
+                    loverType:'1',
+                    lovers:'3'
                 },
                 canSubmit:'disabled'
         };
         this.onSubimt = this.onSubimt.bind(this);
         this.onChangeAttr = this.onChangeAttr.bind(this);
+        this.onChangeValue = this.onChangeValue.bind(this);
     }
 
     onSubimt(){
-        if(checkForm){
+        if(this.checkForm()){
             AjaxUtils.post(GlobalApi.REMOTE_URL + '/users/',this.state.user).then((data)=>{
                 console.log('请求成功',data);
                 hashHistory.push({
@@ -50,21 +50,27 @@ class Home extends React.Component{
         }
     }
 
-    checkForm(){
+    checkForm(value){
         if(this.state.user){
             for(name in this.state.user){
-                if(_.isEmpty(this.state.user[name]) && isNaN(this.state.user[name])){
-                    if(this.state.canSubmit){
+                if(!this.state.user[name] || this.state.user[name] === '' ){
+                    if(this.state.canSubmit === ''){
                         this.setState(Object.assign({},this.state,{canSubmit : 'disabled'}));
                     }
+                    return false;
                 }
             }
         }
         this.setState(Object.assign({},this.state,{canSubmit : ''}));
+        return true;
     }
 
     onChangeAttr(event,attrName){
-        Reflect.set(this.state.user,attrName,event.target.value);
+        this.onChangeValue(event.target.value, attrName);
+    }
+
+    onChangeValue(value,attrName){
+        Reflect.set(this.state.user,attrName,value);
         this.setState(this.state);
     }
 
@@ -88,7 +94,7 @@ class Home extends React.Component{
                 type:'input',
                 onChange:(event)=>{
                     this.onChangeAttr(event, "age");
-                    this.checkForm();
+                    this.checkForm(event);
                 }
             },
             {
@@ -106,7 +112,7 @@ class Home extends React.Component{
                 ],
                 onChange:(event)=>{
                     this.onChangeAttr(event, "sex");
-                    this.checkForm();
+                    this.checkForm(event);
                 },
                 defaultValue:1
             },
@@ -116,8 +122,8 @@ class Home extends React.Component{
                 placeholder:'请输入生日',
                 type:'input',
                 onChange:(event)=>{
-                    this.onChangeAttr(event, "date");
-                    this.checkForm();
+                    this.onChangeAttr(event, "birthday");
+                    this.checkForm(event);
                 }
             },
             {
@@ -127,16 +133,16 @@ class Home extends React.Component{
                 type:'input',
                 onChange:(event)=>{
                     this.onChangeAttr(event, "cardNo");
-                    this.checkForm();
+                    this.checkForm(event);
                 }
             },
             {
                 label:'时间',
                 placeholder:'请输入时间',
                 type:'datePicker',
-                onChange:(event)=>{
-                    this.onChangeAttr(event, "time");
-                    this.checkForm();
+                onChange:(value)=>{
+                    this.onChangeValue(value,'time');
+                    this.checkForm(event);
                 }
             },
             {
@@ -149,7 +155,6 @@ class Home extends React.Component{
                     {text:'文学类',value:2}
                 ],
                 onChange:(event)=>{
-                    console.log('~~~~~~~onChange~~~~~~~~~~~~~~~~~',event.target.value);
                     switch(event.target.value){
                         case "1":
                             this.refs.loversSelect.setItems([
@@ -170,7 +175,7 @@ class Home extends React.Component{
                             this.refs.loversSelect.setItems([]);
                     }
                     this.onChangeAttr(event, "loverType");
-                    this.checkForm();
+                    this.checkForm(event);
                 }
             },
             {
@@ -179,7 +184,7 @@ class Home extends React.Component{
                 type:'select',
                 onChange:(event)=>{
                     this.onChangeAttr(event, "lovers");
-                    this.checkForm();
+                    this.checkForm(event);
                 },
                 defaultValue:3,
                 items:[
@@ -223,7 +228,7 @@ class Home extends React.Component{
                           </div>
                       </div>
                       <div style={{textAlign:'center'}}>
-                            <input type="button" className="submit-button" onClick={this.onSubimt} value="提      交" disabled={this.state.canSubmit}/>
+                            <input type="button" className="submit-button" onClick={this.onSubimt} value='提    交' disabled={this.state.canSubmit} style={this.state.canSubmit === 'disabled' ? {background:'#eee'} : {}}/>
                       </div>
                   </div>
               </div>

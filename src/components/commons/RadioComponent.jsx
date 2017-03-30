@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 import './radio.scss';
 
 class InputComponent extends React.Component{

@@ -29,6 +29,10 @@ class DetailComponent extends React.Component {
         console.log('componentDidMount');
     }
 
+    deleteUser(id){
+        AjaxUtils.delete(GlobalApi.REMOTE_URL + '/users/'+id);
+    }
+
 
     render () {
         return (
@@ -36,7 +40,7 @@ class DetailComponent extends React.Component {
                 <div className="panel panel-default">
                     <div className="panel-heading">列表</div>
                     <div className="panel-body">
-                        <table className="table table-bordered">
+                        <table className="table table-bordered" style={{wordBreak:'break-all'}}>
                             <thead>
                             <tr>
                                 <th>姓名</th>
@@ -47,6 +51,7 @@ class DetailComponent extends React.Component {
                                 <th>时间</th>
                                 <th>爱好种类</th>
                                 <th>爱好</th>
+                                <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -62,6 +67,7 @@ class DetailComponent extends React.Component {
                                         <td>{user.time}</td>
                                         <td>{user.loverType}</td>
                                         <td>{user.lovers}</td>
+                                        <td><a href="#" onClick={()=>{this.deleteUser(user.id)}}>删除</a></td>
                                     </tr>)
                                 })
                             }

@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 
 class InputComponent extends React.Component{
     constructor(props) {
