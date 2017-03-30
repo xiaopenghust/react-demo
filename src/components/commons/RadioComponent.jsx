@@ -23,7 +23,7 @@ class InputComponent extends React.Component{
                     {
                         this.state.radios.map((radio)=>{
                             return <label className="demo--label">
-                                <input className="demo--radio" type="radio" name="sex"  value={radio.value} onChange={this.onChange} checked={this.state.value === radio.value}/>
+                                <input className="demo--radio" type="radio" name="sex"  value={radio.value} onChange={this.onChange} checked={this.state.value == radio.value}/>
                                 <span className="demo--radioInput"></span>{radio.text}
                             </label>
                         })
