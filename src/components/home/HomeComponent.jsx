@@ -19,13 +19,13 @@ class Home extends React.Component{
         this.state ={
             user:{
                 name:'',
-                age:0,
+                age:'',
                 sex:1,
                 birthday:'',
                 cardNo:'',
                 time:'',
-                loverType:'1',
-                lovers:'3'
+                loverType:'',
+                lovers:''
             },
             canSubmit:'disabled'
         };
@@ -37,6 +37,10 @@ class Home extends React.Component{
         this.onChangeAttr = this.onChangeAttr.bind(this);
         this.onChangeValue = this.onChangeValue.bind(this);
         console.log(this.state);
+    }
+
+
+    componentWillMount(){
     }
 
     componentDidMount(){
@@ -183,25 +187,7 @@ class Home extends React.Component{
                     {text:'文学类',value:2}
                 ],
                 onChange:(event)=>{
-                    switch(event.target.value){
-                        case "1":
-                            this.refs.loversSelect.setItems([
-                                {text:'足球',value:1},
-                                {text:'篮球',value:2},
-                                {text:'保龄球',value:3},
-                                {text:'高尔夫球',value:4}
-                            ]);
-                            break;
-                        case "2":
-                            this.refs.loversSelect.setItems([
-                                {text:'语文',value:1},
-                                {text:'数学',value:2},
-                                {text:'英语',value:3}
-                            ]);
-                            break;
-                        default:
-                            this.refs.loversSelect.setItems([]);
-                    }
+                    this.refs.loversSelect.setItems(this.getLoversItems(event.target.value));
                     this.onChangeAttr(event, "loverType");
                     this.checkForm(event);
                 }
@@ -215,15 +201,30 @@ class Home extends React.Component{
                     this.checkForm(event);
                 },
                 defaultValue: this.state.user.lovers,
-                items:[
+                items:this.getLoversItems(this.state.user.loverType),
+                ref:'loversSelect'
+            },
+        ]
+    }
+
+    getLoversItems(loverType){
+        switch(loverType){
+            case "1":
+                return [
                     {text:'足球',value:1},
                     {text:'篮球',value:2},
                     {text:'保龄球',value:3},
                     {text:'高尔夫球',value:4}
-                ],
-                ref:'loversSelect'
-            },
-        ]
+                ];
+            case "2":
+                return [
+                    {text:'语文',value:1},
+                    {text:'数学',value:2},
+                    {text:'英语',value:3}
+                ];
+            default:
+                return [];
+        }
     }
 
     render() {

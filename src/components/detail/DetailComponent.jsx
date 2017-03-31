@@ -72,7 +72,7 @@ class DetailComponent extends React.Component {
                             {
                                 this.state.users.map((user)=>{
                                     return (
-                                    <tr>
+                                    <tr key={user.id}>
                                         <td>{user.name}</td>
                                         <td>{user.age}</td>
                                         <td>{user.sex}</td>

@@ -19,7 +19,7 @@ class SelectComponent extends React.Component{
                     <option value=''>{this.state.placeholder}</option>
                     {
                         this.state.items.map((item)=>{
-                            return <option value={item.value}>{item.text}</option>
+                            return <option value={item.value} key={item.value}>{item.text}</option>
                         })
                     }
                 </select>
