@@ -76,20 +76,20 @@ class Home extends React.Component{
         }
     }
 
-    checkForm(value){
+    checkForm(){
         if(this.state.user){
             for(name in this.state.user){
                 if(name === 'canSubmit')continue;
                 if(!this.state.user[name] || this.state.user[name] === '' ){
-                    if(this.state.canSubmit === ''){
-                        this.setState(Object.assign({},this.state,{canSubmit : 'disabled'}));
-                    }
                     return false;
                 }
             }
         }
-        this.setState(Object.assign({},this.state,{canSubmit : ''}));
         return true;
+    }
+
+    setSubmitButtonDisabled(){
+        this.setState('disabled',this.checkForm());
     }
 
     onChangeAttr(event,attrName){
@@ -111,7 +111,7 @@ class Home extends React.Component{
                 type:'input',
                 onChange:(event)=>{
                     this.onChangeAttr(event, "name");
-                    this.checkForm();
+                    this.setSubmitButtonDisabled();
                 },
                 defaultValue:this.state.user.name
             },
@@ -122,7 +122,7 @@ class Home extends React.Component{
                 type:'input',
                 onChange:(event)=>{
                     this.onChangeAttr(event, "age");
-                    this.checkForm(event);
+                    this.setSubmitButtonDisabled();
                 },
                 defaultValue:this.state.user.age
             },
@@ -141,7 +141,7 @@ class Home extends React.Component{
                 ],
                 onChange:(event)=>{
                     this.onChangeAttr(event, "sex");
-                    this.checkForm(event);
+                    this.setSubmitButtonDisabled();
                 },
                 defaultValue: this.state.user.sex || 1
             },
@@ -153,7 +153,7 @@ class Home extends React.Component{
                 defaultValue: this.state.user.birthday,
                 onChange:(event)=>{
                     this.onChangeAttr(event, "birthday");
-                    this.checkForm(event);
+                    this.setSubmitButtonDisabled();
                 }
             },
             {
@@ -164,7 +164,7 @@ class Home extends React.Component{
                 defaultValue: this.state.user.cardNo,
                 onChange:(event)=>{
                     this.onChangeAttr(event, "cardNo");
-                    this.checkForm(event);
+                    this.setSubmitButtonDisabled();
                 }
             },
             {
@@ -174,7 +174,7 @@ class Home extends React.Component{
                 defaultValue: this.state.user.time,
                 onChange:(value)=>{
                     this.onChangeValue(value,'time');
-                    this.checkForm(event);
+                    this.setSubmitButtonDisabled();
                 }
             },
             {
@@ -189,7 +189,7 @@ class Home extends React.Component{
                 onChange:(event)=>{
                     this.refs.loversSelect.setItems(this.getLoversItems(event.target.value));
                     this.onChangeAttr(event, "loverType");
-                    this.checkForm(event);
+                    this.setSubmitButtonDisabled();
                 }
             },
             {
@@ -198,7 +198,7 @@ class Home extends React.Component{
                 type:'select',
                 onChange:(event)=>{
                     this.onChangeAttr(event, "lovers");
-                    this.checkForm(event);
+                    this.setSubmitButtonDisabled();
                 },
                 defaultValue: this.state.user.lovers,
                 items:this.getLoversItems(this.state.user.loverType),
