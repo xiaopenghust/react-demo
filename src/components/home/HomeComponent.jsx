@@ -27,15 +27,16 @@ class Home extends React.Component{
                 loverType:'',
                 lovers:''
             },
-            canSubmit:'disabled'
+            canSubmit:false
         };
         if(props.location.state && props.location.state.user){
             this.state = Object.assign({},this.state,{user:props.location.state.user});
-            this.state = Object.assign({},this.state,{canSubmit:this.checkForm()? '':'disabled'});
+            this.state = Object.assign({},this.state,{canSubmit:this.checkForm()});
         }
         this.onSubimt = this.onSubimt.bind(this);
         this.onChangeAttr = this.onChangeAttr.bind(this);
         this.onChangeValue = this.onChangeValue.bind(this);
+        this.setSubmitButtonDisabled = this.setSubmitButtonDisabled.bind(this);
         console.log(this.state);
     }
 
@@ -89,7 +90,7 @@ class Home extends React.Component{
     }
 
     setSubmitButtonDisabled(){
-        this.setState('disabled',this.checkForm());
+        this.setState(Object.assign({}, this.state, {'canSubmit':this.checkForm()}));
     }
 
     onChangeAttr(event,attrName){
@@ -258,8 +259,8 @@ class Home extends React.Component{
                       </div>
                       <div style={{textAlign:'center'}}>
                             <input type="button" className="submit-button" onClick={this.onSubimt} value='提    交'
-                                   disabled={this.state.canSubmit}
-                                   style={this.state.canSubmit === 'disabled' ? {background:'#bbb'} : {}}/>
+                                   disabled={this.state.canSubmit ? '' : 'disabled'}
+                                   style={this.state.canSubmit ? {} : {background:'#bbb'}}/>
                       </div>
                   </div>
               </div>
