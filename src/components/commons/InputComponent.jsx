@@ -16,7 +16,7 @@ class InputComponent extends React.Component{
                    aria-describedby="basic-addon1"
                    onChange={this.state.onChange}
                    defaultValue={this.state.defaultValue}
-                   style={{minWidth:'100%'}}
+                   style={{minWidth:'95%'}}
                    />
         </div>)
     }
