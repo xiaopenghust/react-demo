@@ -33,8 +33,8 @@ class PicWallComponents extends React.Component{
                 <div className="picWallContainer">
                     {
                             this.state.imgs.map(function(img){
-                                img.left = CommonUtils.getRandom(0,200);
-                                img.top = CommonUtils.getRandom(0,450);
+                                img.left = CommonUtils.getRandom(0,document.body.scrollWidth-100);
+                                img.top = CommonUtils.getRandom(0,document.body.scrollHeight-100);
                                 img.rotate = CommonUtils.getRandom(-10,10);
                                return <PicComponent key={img.id} obj={img} />
                             })
